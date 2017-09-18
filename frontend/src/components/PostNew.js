@@ -12,6 +12,24 @@ class PostNew extends Component {
           </Link>
         </div> 
         <h1>create a new post</h1>
+        <form>
+          <Field
+            name="title" component='input' type='text' placeholder='title'
+          />
+          <Field
+            name="category" component='select'>
+            <option value='react'>React</option>
+            <option value='redux'>Redux</option>
+            <option value='udacity'>Udacity</option>
+          </Field>
+          <Field
+            name="body" component='textarea' type='text' placeholder='content'
+          />
+          <Field
+            name="author" component='input' type='text' placeholder='name'
+          />
+          <button type="submit">Submit</button>
+        </form>
       </div>  
     )
   }
