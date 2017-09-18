@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions'
+import { Link } from 'react-router-dom'
 
 class MainSection extends Component {
 
@@ -9,9 +10,16 @@ class MainSection extends Component {
   }
 
   render() {
-    console.log(this.props.posts)
-    return ( 
-      <h1>This is the main page</h1>
+ //   console.log(this.props.posts)
+    return (
+      <div>
+        <div>
+          <Link to="/posts/new">
+            Add new post!
+          </Link>
+        </div> 
+        <h1>This is the main page</h1>
+      </div>
     )
   }
 }
