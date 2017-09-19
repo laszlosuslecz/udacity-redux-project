@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { createNewPost } from '../actions'
 
 class PostNew extends Component {
 
@@ -9,7 +11,7 @@ class PostNew extends Component {
       <div>
         <label>{ field.label }</label>
         <input { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.error}
+        {field.meta.touched ? field.meta.error : ''}
       </div>
     )
   }
@@ -19,6 +21,7 @@ class PostNew extends Component {
       <div>
         <label>{ field.label }</label>
         <select { ...field.input } value={ field.value } />
+        {field.meta.touched ? field.meta.error : ''}
       </div>
     )
   }
@@ -28,12 +31,20 @@ class PostNew extends Component {
       <div>
         <label>{ field.label }</label>
         <textarea { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.error}
+        {field.meta.touched ? field.meta.error : ''}
       </div>
     )
   }
 
+  onSubmit(values) {
+    this.props.createNewPost(values)
+    console.log(values)  
+  }
+
   render() {
+
+    const { handleSubmit } = this.props
+
     return ( 
       <div>
         <div>
@@ -42,12 +53,13 @@ class PostNew extends Component {
           </Link>
         </div> 
         <h1>create a new post</h1>
-        <form>
+        <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="title" component={ this.renderInput } label='title' type='text' placeholder='title'
           />
           <Field
             name="category" component='select' label='category'>
+            <option />
             <option value='react'>React</option>
             <option value='redux'>Redux</option>
             <option value='udacity'>Udacity</option>
@@ -71,11 +83,11 @@ function validate(values) {
   if(!values.title) {
     errors.title = 'Please enter a title'
   } 
- /* if(!values.category) {
+  if(!values.category) {
     errors.category = 'Please choose a category'
-  } */
+  }
   if(!values.body) {
-    errors.category = 'Please enter post content'
+    errors.body = 'Please enter post content'
   }
   if(!values.author) {
     errors.author = 'Please enter your name'
@@ -87,4 +99,6 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'new-post'
-})(PostNew)
+})(
+  connect(null, { createNewPost })(PostNew)
+)
