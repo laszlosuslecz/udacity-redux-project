@@ -26,3 +26,7 @@ export const createPost = (post, callback) =>
   })
   .then(res => res.json())
   .then(() => callback())
+
+export const getPostDetail = (postId) =>
+  fetch(`${url}/posts/${postId}`, { headers })
+    .then(res => res.json())

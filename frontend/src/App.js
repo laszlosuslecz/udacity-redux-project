@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path='/:category' component={ CategoryView } />
           <Route exact path='/posts/new' component={ PostNew } />
           <Route exact path='/posts/edit' component={ PostEdit } />
-          <Route exact path='/:category/:post_id' component={ PostDetail } />
+          <Route exact path='/:category/:id' component={ PostDetail } />
           <Route component={ NoMatch } />
         </Switch>
       </div>
