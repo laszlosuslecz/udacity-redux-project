@@ -14,7 +14,7 @@ export const getPosts = () =>
   fetch(`${url}/posts`, { headers })
     .then(res => res.json())
 
-export const createPost = (post) =>
+export const createPost = (post, callback) =>
   fetch(`${url}/posts`, {
     method: 'POST', 
     headers,
@@ -23,4 +23,6 @@ export const createPost = (post) =>
       id: uuid(),
       timestamp: Date.now()
     })
-  }).then(res => res.json())
+  })
+  .then(res => res.json())
+  .then(() => callback())

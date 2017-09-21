@@ -11,9 +11,9 @@ export function fetchPosts() {
   }
 }
 
-export function createNewPost(values) {
+export function createNewPost(values, callback) {
   return {
     type: CREATE_NEW_POST,
-    payload: createPost(values)
+    payload: createPost(values, callback)
   }
 }
