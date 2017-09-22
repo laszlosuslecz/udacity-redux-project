@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { fetchPosts } from '../actions'
 import { Link } from 'react-router-dom'
 
+import Categories from './Categories'
+
 class MainSection extends Component {
 
   componentDidMount() {
@@ -19,6 +21,9 @@ class MainSection extends Component {
           </Link>
         </div> 
         <h1>This is the main page</h1>
+        <div>
+          <Categories />
+        </div>
       </div>
     )
   }

@@ -2,9 +2,21 @@ import { getPosts } from '../api_methods'
 import { createPost } from '../api_methods'
 import { getPostDetail } from '../api_methods'
 
+import { getCategories } from '../api_methods'
+
 export const FETCH_POSTS = 'fetch_posts'
 export const CREATE_NEW_POST = 'create_new_post'
 export const FETCH_GIVEN_POST = 'fetch_given_post'
+
+export const FETCH_CATEGORIES = 'fetch_categories'
+
+
+export function fetchCategories() {
+  return {
+    type: FETCH_CATEGORIES,
+    payload: getCategories()
+  }
+}
 
 export function fetchPosts() {
   return {

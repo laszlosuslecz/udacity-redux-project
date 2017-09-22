@@ -30,3 +30,8 @@ export const createPost = (post, callback) =>
 export const getPostDetail = (postId) =>
   fetch(`${url}/posts/${postId}`, { headers })
     .then(res => res.json())
+
+//fetch the category list
+export const getCategories = () =>
+  fetch(`${url}/categories`, { headers })
+    .then(res => res.json())
