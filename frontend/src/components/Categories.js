@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchCategories } from '../actions'
 
 
@@ -19,7 +20,9 @@ class Categories extends Component {
     if (categories) {
       return _.map(categories, category => {
         return (
-          <li key={category.name}>{category.name}</li>
+          <li key={category.name}>
+            <Link to={`/${category.path}`}>{category.name}</Link>
+          </li>
         )
       })
     }

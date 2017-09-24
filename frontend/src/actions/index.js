@@ -1,7 +1,10 @@
-import { getPosts } from '../api_methods'
-import { createPost } from '../api_methods'
-import { getPostDetail } from '../api_methods'
-import { deleteGivenPost } from '../api_methods'
+import { 
+  getPosts,
+  createPost,
+  getPostDetail,
+  deleteGivenPost,
+  fetchGivenCategoryPosts
+} from '../api_methods'
 
 import { getCategories } from '../api_methods'
 
@@ -11,6 +14,7 @@ export const FETCH_POSTS = 'fetch_posts'
 export const CREATE_NEW_POST = 'create_new_post'
 export const FETCH_GIVEN_POST = 'fetch_given_post'
 export const DELETE_POST = 'delete_post'
+export const FETCH_CATEGORY_POSTS = 'fetch_category_posts'
 
 export const FETCH_CATEGORIES = 'fetch_categories'
 
@@ -59,6 +63,13 @@ export function deletePost(id, callback) {
   return {
     type: DELETE_POST,
     payload: deleteGivenPost(id, callback)
+  }
+}
+
+export function fetchCategoryPosts(category) {
+  return {
+    type: FETCH_CATEGORY_POSTS,
+    payload: fetchGivenCategoryPosts(category)
   }
 }
 
