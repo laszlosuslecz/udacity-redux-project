@@ -23,7 +23,7 @@ class PostDetail extends Component {
     
     return _.map(comments, comment => {
       return (
-        <li key={comment.id}>{comment.id}</li>
+        <li key={comment.id}>{comment.body}</li>
       )
     })
   }

@@ -39,4 +39,4 @@ export const getCategories = () =>
 //fetch comments to given post
 export const getComments = (postId) =>
   fetch(`${url}/posts/${postId}/comments`, { headers })
-    .then(res => res.json)
+    .then(res => res.json())
