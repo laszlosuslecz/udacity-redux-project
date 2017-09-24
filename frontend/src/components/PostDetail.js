@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { fetchGivenPost } from '../actions'
 import { fetchComments } from '../actions'
 
@@ -11,6 +13,23 @@ class PostDetail extends Component {
     const { id } = this.props.match.params
     this.props.fetchGivenPost(id)
     this.props.fetchComments(id)
+  }
+
+  renderPostDetails() {
+    const { post } = this.props
+    
+    return (
+         <div>
+           <h3>{post.title}</h3>
+           <div>{`Posted by: ${post.author}`}</div>
+           <div>{`Score: ${post.voteScore}`}</div>
+           <button>Upvote</button>
+           <button>Downvote</button>
+           <button>Edit</button>
+           <button>Delete</button>
+           <div>{post.body}</div>
+         </div>
+    )
   }
 
   renderCommentList() {
@@ -38,10 +57,13 @@ class PostDetail extends Component {
 
     return ( 
       <div>
+        <Link to='/'>Back to the main page</Link>
         <h1>show the selected post</h1>
-        <h3>{ post.title }</h3>
+        <div>{ this.renderPostDetails() }</div>
         <div>
+          <h4>Comments</h4>
           <ul>{ this.renderCommentList() }</ul>
+          <button>Add new comment</button>
         </div>
       </div>
     )
