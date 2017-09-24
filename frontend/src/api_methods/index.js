@@ -31,6 +31,13 @@ export const getPostDetail = (postId) =>
   fetch(`${url}/posts/${postId}`, { headers })
     .then(res => res.json())
 
+export const deleteGivenPost = (postId, callback) =>
+  fetch(`${url}/posts/${postId}`, { 
+    method: 'DELETE',
+    headers
+  })
+  .then(() => callback())
+
 //fetch the category list
 export const getCategories = () =>
   fetch(`${url}/categories`, { headers })

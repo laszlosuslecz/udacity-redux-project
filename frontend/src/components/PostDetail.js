@@ -3,19 +3,31 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { fetchGivenPost } from '../actions'
-import { fetchComments } from '../actions'
-
+import { 
+  fetchGivenPost,
+  fetchComments,
+  deletePost
+} from '../actions'
 
 class PostDetail extends Component {
 
   componentDidMount() {
+    if (!this.props.post) {
+      const { id } = this.props.match.params
+      this.props.fetchGivenPost(id)
+      this.props.fetchComments(id)
+    }
+  }
+
+  onDeleteClick() {
     const { id } = this.props.match.params
-    this.props.fetchGivenPost(id)
-    this.props.fetchComments(id)
+    this.props.deletePost(id, () => {
+      this.props.history.push('/')
+    })
   }
 
   renderPostDetails() {
+   
     const { post } = this.props
     
     return (
@@ -26,7 +38,9 @@ class PostDetail extends Component {
            <button>Upvote</button>
            <button>Downvote</button>
            <button>Edit</button>
-           <button>Delete</button>
+           <button
+            onClick={ this.onDeleteClick.bind(this) }
+           >Delete</button>
            <div>{post.body}</div>
          </div>
     )
@@ -79,5 +93,6 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(mapStateToProps, { 
   fetchGivenPost,
-  fetchComments
+  fetchComments,
+  deletePost
 })(PostDetail)
