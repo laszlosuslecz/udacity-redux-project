@@ -26,8 +26,7 @@ class PostDetail extends Component {
     })
   }
 
-  renderPostDetails() {
-   
+  renderPostDetails() {   
     const { post } = this.props
     
     return (
