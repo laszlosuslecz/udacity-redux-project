@@ -31,6 +31,20 @@ export const getPostDetail = (postId) =>
   fetch(`${url}/posts/${postId}`, { headers })
     .then(res => res.json())
 
+export const editGivenPost = (id, post, callback) =>
+    fetch(`${url}/posts/${id}`, {
+      method: 'PUT', 
+      headers,
+      body: JSON.stringify({
+        ...post,
+        timestamp: Date.now()
+      })
+    })
+    .then(res => res.json())
+    .then(() => callback())
+
+
+
 export const deleteGivenPost = (postId, callback) =>
   fetch(`${url}/posts/${postId}`, { 
     method: 'DELETE',
