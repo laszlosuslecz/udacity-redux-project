@@ -9,7 +9,10 @@ import {
 
 import { getCategories } from '../api_methods'
 
-import { getComments } from '../api_methods'
+import { 
+  getComments,
+  createComment  
+} from '../api_methods'
 
 export const FETCH_POSTS = 'fetch_posts'
 export const CREATE_NEW_POST = 'create_new_post'
@@ -21,12 +24,20 @@ export const FETCH_CATEGORY_POSTS = 'fetch_category_posts'
 export const FETCH_CATEGORIES = 'fetch_categories'
 
 export const FETCH_COMMENTS = 'fetch_comments'
+export const CREATE_NEW_COMMENT = 'create_new_comment'
 
 //Comments
 export function fetchComments(postId) {
   return {
     type: FETCH_COMMENTS,
     payload: getComments(postId)
+  }
+}
+
+export function createNewComment(parentId, values, callback) {
+  return {
+    type: CREATE_NEW_COMMENT,
+    payload: createComment(parentId, values, callback)
   }
 }
 

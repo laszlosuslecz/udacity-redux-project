@@ -43,8 +43,6 @@ export const editGivenPost = (id, post, callback) =>
     .then(res => res.json())
     .then(() => callback())
 
-
-
 export const deleteGivenPost = (postId, callback) =>
   fetch(`${url}/posts/${postId}`, { 
     method: 'DELETE',
@@ -65,3 +63,18 @@ export const getCategories = () =>
 export const getComments = (postId) =>
   fetch(`${url}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
+
+//create new comment
+export const createComment = (postId, comment, callback) =>
+fetch(`${url}/comments`, {
+  method: 'POST', 
+  headers,
+  body: JSON.stringify({
+    ...comment,
+    id: uuid(),
+    timestamp: Date.now(),
+    parentId: postId
+  })
+})
+.then(res => res.json())
+.then(() => callback())
