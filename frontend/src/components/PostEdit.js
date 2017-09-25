@@ -95,9 +95,6 @@ function validate(values) {
   if(!values.title) {
     errors.title = 'Please enter a title'
   } 
-  if(!values.category) {
-    errors.category = 'Please choose a category'
-  }
   if(!values.body) {
     errors.body = 'Please enter post content'
   }

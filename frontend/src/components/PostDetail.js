@@ -36,7 +36,7 @@ class PostDetail extends Component {
            <div>{`Score: ${post.voteScore}`}</div>
            <button>Upvote</button>
            <button>Downvote</button>
-           <button>Edit</button>
+           <Link to={`/posts/edit/${post.id}`}><button>Edit</button></Link>         
            <button
             onClick={ this.onDeleteClick.bind(this) }
            >Delete</button>
