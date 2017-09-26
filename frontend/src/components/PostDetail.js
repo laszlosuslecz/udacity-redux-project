@@ -11,13 +11,12 @@ import {
 
 class PostDetail extends Component {
 
-  componentDidMount() {
-    if (!this.props.post) {
+  componentDidMount() {  
       const { id } = this.props.match.params
       this.props.fetchGivenPost(id)
       this.props.fetchComments(id)
-    }
   }
+  
 
   onDeleteClick() {
     const { id } = this.props.match.params
@@ -56,7 +55,10 @@ class PostDetail extends Component {
     
     return _.map(comments, comment => {
       return (
-        <li key={comment.id}>{comment.body}</li>
+        <li key={comment.id}>
+          <div>{comment.body}</div>
+          <Link to={`/comment/edit/${comment.id}`}><button>Edit / Delete</button></Link> 
+        </li>
       )
     })
   }

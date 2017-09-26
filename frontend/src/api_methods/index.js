@@ -66,15 +66,38 @@ export const getComments = (postId) =>
 
 //create new comment
 export const createComment = (postId, comment, callback) =>
-fetch(`${url}/comments`, {
-  method: 'POST', 
-  headers,
-  body: JSON.stringify({
-    ...comment,
-    id: uuid(),
-    timestamp: Date.now(),
-    parentId: postId
+  fetch(`${url}/comments`, {
+    method: 'POST', 
+    headers,
+    body: JSON.stringify({
+      ...comment,
+      id: uuid(),
+      timestamp: Date.now(),
+      parentId: postId
+    })
   })
-})
-.then(res => res.json())
-.then(() => callback())
+  .then(res => res.json())
+  .then(() => callback())
+
+
+//fetch given comment  --> a: fetchGivenComment
+export const getCommentDetail = (id) =>
+  fetch(`${url}/comments/${id}`, { headers })
+    .then(res => res.json())
+
+//edit given comment --> a: editComment
+export const editGivenComment = (id, comment, callback) =>
+  fetch(`${url}/comments/${id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({
+      ...comment,
+      timestamp: Date.now()
+    })
+  })
+  .then(res => res.json())
+  .then(() => callback())
+
+
+//delete given comment  --> a: deleteComment
+//export const deleteGivenComment
