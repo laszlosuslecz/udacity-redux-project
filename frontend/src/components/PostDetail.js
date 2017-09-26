@@ -86,8 +86,8 @@ class PostDetail extends Component {
 
 function mapStateToProps(state, ownProps) {
   return { 
-  post: state.posts[ownProps.match.params.id], 
-  comments: state.comments
+    post: state.posts[ownProps.match.params.id], 
+    comments: _.filter(state.comments, {'parentId': ownProps.match.params.id})
   }
 }
 
