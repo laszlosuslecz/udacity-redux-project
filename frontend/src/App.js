@@ -21,7 +21,7 @@ class App extends Component {
           <Route exact path='/posts/new' component={ PostNew } />
           <Route exact path='/commentto/:id/:category' component={ CommentNew } />
           <Route exact path='/posts/edit/:id' component={ PostEdit } />
-          <Route exact path='/comment/edit/:id' component={ CommentEdit } />
+          <Route exact path='/comment/edit/:id/:category' component={ CommentEdit } />
           <Route exact path='/:category/:id' component={ PostDetail } />
           <Route component={ NoMatch } />
         </Switch>

@@ -47,9 +47,10 @@ class CommentEdit extends Component {
   }
 
   onSubmit(values) {
-    const { id } = this.props.match.params  
+    const { id, category } = this.props.match.params
+    const { parentId } = this.props.comment
     this.props.editComment(id, values, () => {
-      this.props.history.push('/')  
+      this.props.history.push(`/${category}/${parentId}`)  
     }) 
   }
 

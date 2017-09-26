@@ -47,7 +47,7 @@ class PostDetail extends Component {
   }
 
   renderCommentList() {
-    const { comments } = this.props
+    const { comments, post } = this.props
     console.log(this.props.comments)
     
     if (!comments) {
@@ -58,7 +58,7 @@ class PostDetail extends Component {
       return (
         <li key={comment.id}>
           <div>{comment.body}</div>
-          <Link to={`/comment/edit/${comment.id}`}><button>Edit / Delete</button></Link> 
+          <Link to={`/comment/edit/${comment.id}/${post.category}`}><button>Edit / Delete</button></Link> 
         </li>
       )
     })
