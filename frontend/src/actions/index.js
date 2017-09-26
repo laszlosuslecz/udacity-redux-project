@@ -11,7 +11,9 @@ import { getCategories } from '../api_methods'
 
 import { 
   getComments,
-  createComment  
+  createComment,
+  getCommentDetail,
+  editGivenComment    
 } from '../api_methods'
 
 export const FETCH_POSTS = 'fetch_posts'
@@ -25,6 +27,8 @@ export const FETCH_CATEGORIES = 'fetch_categories'
 
 export const FETCH_COMMENTS = 'fetch_comments'
 export const CREATE_NEW_COMMENT = 'create_new_comment'
+export const FETCH_GIVEN_COMMENT = 'fetch_given_comment'
+export const EDIT_COMMENT = 'edit_comment'
 
 //Comments
 export function fetchComments(postId) {
@@ -38,6 +42,20 @@ export function createNewComment(parentId, values, callback) {
   return {
     type: CREATE_NEW_COMMENT,
     payload: createComment(parentId, values, callback)
+  }
+}
+
+export function fetchGivenComment(id) {
+  return { 
+    type: FETCH_GIVEN_COMMENT,
+    payload: getCommentDetail(id)
+  }  
+}
+
+export function editComment(id, values, callback) {
+  return {
+    type: EDIT_COMMENT,
+    payload: editGivenComment(id, values, callback)
   }
 }
 
