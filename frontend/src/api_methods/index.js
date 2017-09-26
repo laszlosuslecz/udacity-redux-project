@@ -100,4 +100,9 @@ export const editGivenComment = (id, comment, callback) =>
 
 
 //delete given comment  --> a: deleteComment
-//export const deleteGivenComment
+export const deleteGivenComment = (id, callback) =>
+  fetch(`${url}/comments/${id}`, { 
+    method: 'DELETE',
+    headers 
+  })
+  .then(() => callback())

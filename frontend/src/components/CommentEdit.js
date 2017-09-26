@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 import { 
   editComment,
-  fetchGivenComment 
+  fetchGivenComment,
+  deleteComment 
 } from '../actions'
 
 class CommentEdit extends Component {
@@ -14,6 +15,14 @@ class CommentEdit extends Component {
     const { id } = this.props.match.params
     this.props.fetchGivenComment(id)
     this.handleInitialize()
+  }
+
+  onDeleteClick() {
+    const { id, category } = this.props.match.params
+    const { parentId } = this.props.comment
+    this.props.deleteComment(id, () => {
+      this.props.history.push(`/${category}/${parentId}`)
+    })
   }
 
   handleInitialize() {
@@ -65,7 +74,7 @@ class CommentEdit extends Component {
             Back to main page!
           </Link>
         </div> 
-        <h1>Edit post</h1>
+        <h1>Edit comment</h1>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="body" component={ this.renderTextarea } label='comment' placeholder='comment'
@@ -75,6 +84,9 @@ class CommentEdit extends Component {
           />
           <button type="submit">Update</button>
         </form>
+        <button
+          onClick={ this.onDeleteClick.bind(this) }
+        >Delete</button>
         <Link to="/">
             Back to main page without updating comment!
         </Link>
@@ -106,5 +118,5 @@ export default reduxForm({
   validate,
   form: 'edit-comment'
 })(
-  connect(mapStateToProps, { editComment, fetchGivenComment })(CommentEdit)
+  connect(mapStateToProps, { editComment, fetchGivenComment, deleteComment })(CommentEdit)
 )

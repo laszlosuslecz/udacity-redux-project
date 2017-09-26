@@ -13,7 +13,8 @@ import {
   getComments,
   createComment,
   getCommentDetail,
-  editGivenComment    
+  editGivenComment,
+  deleteGivenComment    
 } from '../api_methods'
 
 export const FETCH_POSTS = 'fetch_posts'
@@ -29,6 +30,7 @@ export const FETCH_COMMENTS = 'fetch_comments'
 export const CREATE_NEW_COMMENT = 'create_new_comment'
 export const FETCH_GIVEN_COMMENT = 'fetch_given_comment'
 export const EDIT_COMMENT = 'edit_comment'
+export const DELETE_COMMENT = 'delete_comment'
 
 //Comments
 export function fetchComments(postId) {
@@ -56,6 +58,13 @@ export function editComment(id, values, callback) {
   return {
     type: EDIT_COMMENT,
     payload: editGivenComment(id, values, callback)
+  }
+}
+
+export function deleteComment(id, callback) {
+  return {
+    type: DELETE_COMMENT,
+    payload: deleteGivenComment(id, callback)
   }
 }
 
