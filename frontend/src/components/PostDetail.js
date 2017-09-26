@@ -12,11 +12,9 @@ import {
 class PostDetail extends Component {
 
   componentDidMount() {
-    if (!this.props.post) {
       const { id } = this.props.match.params
       this.props.fetchGivenPost(id)
       this.props.fetchComments(id)
-    }
   }
 
   onDeleteClick() {
