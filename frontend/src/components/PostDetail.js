@@ -7,6 +7,7 @@ import {
   fetchGivenPost,
   fetchComments,
   votePost,
+  voteComment,
   deletePost
 } from '../actions'
 
@@ -19,7 +20,7 @@ class PostDetail extends Component {
       this.props.fetchComments(id)
   }
   
-  onVoteClick() {
+  onPostVoteClick() {
     const { id } = this.props.match.params
     this.props.votePost(id, 'upVote')
   }
@@ -38,7 +39,7 @@ class PostDetail extends Component {
          <div>
            <h3>{post.title}</h3>          
            <button
-            onClick={ this.onVoteClick.bind(this) }
+            onClick={ this.onPostVoteClick.bind(this) }
            >Upvote</button>
            <button>Downvote</button>           
            <Link to={`/posts/edit/${post.id}`}><button>Edit</button></Link>         
@@ -54,21 +55,24 @@ class PostDetail extends Component {
   }
 
   renderCommentList() {
-    const { comments, post } = this.props
-    console.log(this.props.comments)
+    const { comments, post, voteComment } = this.props
     
     if (!comments) {
       return (<div>Loading...</div>)
     }
     
-    return _.map(comments, comment => {
+    return _.map(comments, (comment, id) => {
       return (
         <li key={comment.id}>
           <div>{comment.body}</div>
           <div>{comment.author}</div>
           <div>{`Score: ${comment.voteScore}`}</div>
-          <button>Upvote</button>
-          <button>Downvote</button>
+          <button
+            onClick={() => voteComment(comment.id, 'upVote')}
+          >Upvote</button>
+          <button
+            onClick={() => voteComment(comment.id, 'downVote')}
+          >Downvote</button>
           <Link to={`/comment/edit/${comment.id}/${post.category}`}><button>Edit / Delete</button></Link> 
         </li>
       )
@@ -108,5 +112,6 @@ export default connect(mapStateToProps, {
   fetchGivenPost,
   fetchComments,
   votePost,
+  voteComment,
   deletePost
 })(PostDetail)

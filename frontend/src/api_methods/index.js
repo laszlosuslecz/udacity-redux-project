@@ -116,6 +116,15 @@ export const editGivenComment = (id, comment, callback) =>
   .then(() => callback())
 
 
+export const voteGivenComment = (id, option) =>
+  fetch(`${url}/comments/${id}`, {
+    method: 'POST', 
+    headers,
+    body: JSON.stringify({ option })
+  })
+  .then(res => res.json())
+
+
 //delete given comment  --> a: deleteComment
 export const deleteGivenComment = (id, callback) =>
   fetch(`${url}/comments/${id}`, { 
