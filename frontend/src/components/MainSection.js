@@ -26,10 +26,9 @@ class MainSection extends Component {
           <Link to={`/${post.category}/${post.id}`}><h3>{post.title}</h3></Link>
           <div>{`Posted by: ${post.author}`}</div>
           <div>{`Score: ${post.voteScore}`}</div>
+          <div>Number of comments: </div>
           <button>Upvote</button>
           <button>Downvote</button>
-          <button>Edit</button>
-          <button>Delete</button>
         </li>
       )
     })
@@ -44,12 +43,13 @@ class MainSection extends Component {
             Add new post!
           </Link>
         </div> 
-        <h1>This is the main page</h1>
+        <h1>Reabadle</h1>
         <div>
           <Categories />
         </div>
         <div>
-          <span>This is the list of posts:</span>
+          <h3>Posts</h3>
+          <span>Sort by <button>Date</button><button>Score</button></span>
           <ul>{ this.renderPostList() }</ul>
         </div>
       </div>

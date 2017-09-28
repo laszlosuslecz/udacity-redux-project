@@ -31,16 +31,16 @@ class PostDetail extends Component {
     
     return (
          <div>
-           <h3>{post.title}</h3>
-           <div>{`Posted by: ${post.author}`}</div>
-           <div>{`Score: ${post.voteScore}`}</div>
+           <h3>{post.title}</h3>          
            <button>Upvote</button>
-           <button>Downvote</button>
-           <Link to={`/commentto/${post.id}/${post.category}`}><button>Add comment</button></Link>
+           <button>Downvote</button>           
            <Link to={`/posts/edit/${post.id}`}><button>Edit</button></Link>         
            <button
             onClick={ this.onDeleteClick.bind(this) }
            >Delete</button>
+           <div>{`Posted by: ${post.author}`}</div>
+           <div>{`Score: ${post.voteScore}`}</div>
+           <span>Number of comments:</span>
            <div>{post.body}</div>
          </div>
     )
@@ -58,6 +58,10 @@ class PostDetail extends Component {
       return (
         <li key={comment.id}>
           <div>{comment.body}</div>
+          <div>{comment.author}</div>
+          <div>{`Score: ${comment.voteScore}`}</div>
+          <button>Upvote</button>
+          <button>Downvote</button>
           <Link to={`/comment/edit/${comment.id}/${post.category}`}><button>Edit / Delete</button></Link> 
         </li>
       )
@@ -75,12 +79,11 @@ class PostDetail extends Component {
     return ( 
       <div>
         <Link to='/'>Back to the main page</Link>
-        <h1>show the selected post</h1>
         <div>{ this.renderPostDetails() }</div>
         <div>
           <h4>Comments</h4>
           <ul>{ this.renderCommentList() }</ul>
-          <button>Add new comment</button>
+          <Link to={`/commentto/${post.id}/${post.category}`}><button>Add comment</button></Link>
         </div>
       </div>
     )
