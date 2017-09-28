@@ -10,9 +10,11 @@ const headers = {
   'Content-Type': 'application/json'
 }
 
+
 export const getPosts = () => 
   fetch(`${url}/posts`, { headers })
     .then(res => res.json())
+
 
 export const createPost = (post, callback) =>
   fetch(`${url}/posts`, {
@@ -27,9 +29,11 @@ export const createPost = (post, callback) =>
   .then(res => res.json())
   .then(() => callback())
 
+
 export const getPostDetail = (postId) =>
   fetch(`${url}/posts/${postId}`, { headers })
     .then(res => res.json())
+
 
 export const editGivenPost = (id, post, callback) =>
     fetch(`${url}/posts/${id}`, {
@@ -43,6 +47,16 @@ export const editGivenPost = (id, post, callback) =>
     .then(res => res.json())
     .then(() => callback())
 
+
+export const voteGivenPost = (id, option) =>
+    fetch(`${url}/posts/${id}`, {
+      method: 'POST', 
+      headers,
+      body: JSON.stringify({ option })
+    })
+    .then(res => res.json())
+
+
 export const deleteGivenPost = (postId, callback) =>
   fetch(`${url}/posts/${postId}`, { 
     method: 'DELETE',
@@ -50,9 +64,12 @@ export const deleteGivenPost = (postId, callback) =>
   })
     .then(() => callback())
 
+
 export const fetchGivenCategoryPosts = (category) =>
   fetch(`${url}/${category}/posts`, { headers })
     .then(res => res.json())
+
+
 
 //fetch the category list
 export const getCategories = () =>

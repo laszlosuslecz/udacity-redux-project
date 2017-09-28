@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { 
   fetchGivenPost,
   fetchComments,
+  votePost,
   deletePost
 } from '../actions'
 
@@ -18,6 +19,10 @@ class PostDetail extends Component {
       this.props.fetchComments(id)
   }
   
+  onVoteClick() {
+    const { id } = this.props.match.params
+    this.props.votePost(id, 'upVote')
+  }
 
   onDeleteClick() {
     const { id } = this.props.match.params
@@ -32,7 +37,9 @@ class PostDetail extends Component {
     return (
          <div>
            <h3>{post.title}</h3>          
-           <button>Upvote</button>
+           <button
+            onClick={ this.onVoteClick.bind(this) }
+           >Upvote</button>
            <button>Downvote</button>           
            <Link to={`/posts/edit/${post.id}`}><button>Edit</button></Link>         
            <button
@@ -100,5 +107,6 @@ function mapStateToProps(state, ownProps) {
 export default connect(mapStateToProps, { 
   fetchGivenPost,
   fetchComments,
+  votePost,
   deletePost
 })(PostDetail)

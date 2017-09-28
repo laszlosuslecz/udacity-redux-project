@@ -3,6 +3,7 @@ import {
   createPost,
   getPostDetail,
   editGivenPost,
+  voteGivenPost,
   deleteGivenPost,
   fetchGivenCategoryPosts
 } from '../api_methods'
@@ -21,6 +22,7 @@ export const FETCH_POSTS = 'fetch_posts'
 export const CREATE_NEW_POST = 'create_new_post'
 export const FETCH_GIVEN_POST = 'fetch_given_post'
 export const EDIT_POST = 'edit_post'
+export const VOTE_POST = 'vote_post'
 export const DELETE_POST = 'delete_post'
 export const FETCH_CATEGORY_POSTS = 'fetch_category_posts'
 
@@ -103,6 +105,13 @@ export function editPost(id, values, callback) {
   return {
     type: EDIT_POST,
     payload: editGivenPost(id, values, callback)
+  }
+}
+
+export function votePost(id, option) {
+  return {
+    type: VOTE_POST,
+    payload: voteGivenPost(id, option)
   }
 }
 
