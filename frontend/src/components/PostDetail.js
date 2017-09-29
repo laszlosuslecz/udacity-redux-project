@@ -34,7 +34,7 @@ class PostDetail extends Component {
          <div>
            <h3>{post.title}</h3>          
            <button
-           onClick={() => votePost(post.id, 'upVote')}
+            onClick={() => votePost(post.id, 'upVote')}
            >Upvote</button>
            <button
             onClick={() => votePost(post.id, 'downVote')}

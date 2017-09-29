@@ -4,7 +4,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { fetchCategoryPosts } from '../actions'
+import { 
+  fetchCategoryPosts,
+  votePost 
+} from '../actions'
 
 class CategoryView extends Component {
 
@@ -14,7 +17,7 @@ class CategoryView extends Component {
   }
 
   renderCategoryPostList() {
-    const { posts } = this.props
+    const { posts, votePost } = this.props
 
     return _.map(posts, post => {
       return (
@@ -22,10 +25,12 @@ class CategoryView extends Component {
           <Link to={`/${post.category}/${post.id}`}><h3>{post.title}</h3></Link>
           <div>{`Posted by: ${post.author}`}</div>
           <div>{`Score: ${post.voteScore}`}</div>
-          <button>Upvote</button>
-          <button>Downvote</button>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button
+            onClick={() => votePost(post.id, 'upVote')}
+          >Upvote</button>
+          <button
+            onClick={() => votePost(post.id, 'downVote')}
+          >Downvote</button>
         </li>
       )
     })
@@ -47,5 +52,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { 
-  fetchCategoryPosts
+  fetchCategoryPosts,
+  votePost
 })(CategoryView)
