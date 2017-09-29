@@ -19,11 +19,6 @@ class PostDetail extends Component {
       this.props.fetchGivenPost(id)
       this.props.fetchComments(id)
   }
-  
-  onPostVoteClick() {
-    const { id } = this.props.match.params
-    this.props.votePost(id, 'upVote')
-  }
 
   onDeleteClick() {
     const { id } = this.props.match.params
@@ -33,15 +28,17 @@ class PostDetail extends Component {
   }
 
   renderPostDetails() {   
-    const { post } = this.props
+    const { post, votePost } = this.props
     
     return (
          <div>
            <h3>{post.title}</h3>          
            <button
-            onClick={ this.onPostVoteClick.bind(this) }
+           onClick={() => votePost(post.id, 'upVote')}
            >Upvote</button>
-           <button>Downvote</button>           
+           <button
+            onClick={() => votePost(post.id, 'downVote')}
+           >Downvote</button>           
            <Link to={`/posts/edit/${post.id}`}><button>Edit</button></Link>         
            <button
             onClick={ this.onDeleteClick.bind(this) }

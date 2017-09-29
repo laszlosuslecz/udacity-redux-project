@@ -2,8 +2,13 @@ import _ from 'lodash'
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPosts } from '../actions'
 import { Link } from 'react-router-dom'
+
+import { 
+  fetchPosts,
+  votePost
+ } from '../actions'
+
 
 import Categories from './Categories'
 
@@ -14,7 +19,7 @@ class MainSection extends Component {
   }
 
   renderPostList() {
-    const { posts } = this.props
+    const { posts, votePost } = this.props
    
     if (!posts) {
       return (<div>Loading...</div>)
@@ -27,8 +32,12 @@ class MainSection extends Component {
           <div>{`Posted by: ${post.author}`}</div>
           <div>{`Score: ${post.voteScore}`}</div>
           <div>Number of comments: </div>
-          <button>Upvote</button>
-          <button>Downvote</button>
+          <button
+            onClick={() => votePost(post.id, 'upVote')}
+          >Upvote</button>
+          <button
+            onClick={() => votePost(post.id, 'downVote')}
+          >Downvote</button>
         </li>
       )
     })
@@ -61,4 +70,7 @@ function mapStateToProps(state) {
   return { posts: state.posts }
 }
 
-export default connect(mapStateToProps, { fetchPosts })(MainSection)
+export default connect(mapStateToProps, { 
+  fetchPosts,
+  votePost 
+})(MainSection)
