@@ -7,6 +7,7 @@ import promise from 'redux-promise'
 
 import reducers from './reducers'
 
+import 'sanitize.css'
 import './index.css'
 import App from './App'
 
