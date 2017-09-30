@@ -28,7 +28,7 @@ class PostDetail extends Component {
   }
 
   renderPostDetails() {   
-    const { post, votePost } = this.props
+    const { post, votePost, comments } = this.props
     
     return (
          <div>
@@ -45,7 +45,7 @@ class PostDetail extends Component {
            >Delete</button>
            <div>{`Posted by: ${post.author}`}</div>
            <div>{`Score: ${post.voteScore}`}</div>
-           <span>Number of comments:</span>
+           <span>{`Number of comments: ${comments.length}`}</span>
            <div>{post.body}</div>
          </div>
     )
@@ -53,7 +53,6 @@ class PostDetail extends Component {
 
   renderCommentList() {
     const { comments, post, voteComment } = this.props
-    
     if (!comments) {
       return (<div>Loading...</div>)
     }
