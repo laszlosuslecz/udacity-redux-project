@@ -20,7 +20,7 @@ class MainSection extends Component {
 
   renderPostList() {
     const { posts, votePost } = this.props
-   
+    
     if (!posts) {
       return (<div>Loading...</div>)
     }
@@ -67,7 +67,13 @@ class MainSection extends Component {
 }
 
 function mapStateToProps(state) {
-  return { posts: state.posts }
+  return { 
+  //  posts: state.posts,
+    posts: _(state.posts)
+      .sortBy('voteScore')
+      .value()
+      .reverse()
+  }
 }
 
 export default connect(mapStateToProps, { 
