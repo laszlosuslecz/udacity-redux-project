@@ -33,9 +33,11 @@ class MainSection extends Component {
           <div>{`Score: ${post.voteScore}`}</div>
           <div>Number of comments: </div>
           <button
+            className="btn btn-content"
             onClick={() => votePost(post.id, 'upVote')}
           >Upvote</button>
           <button
+            className="btn btn-content"
             onClick={() => votePost(post.id, 'downVote')}
           >Downvote</button>
         </li>
@@ -46,17 +48,19 @@ class MainSection extends Component {
   render() {
     console.log(this.props.posts)
     return (
-      <div>
+      <div className="main-container">
         <div>
-          <Link to="/posts/new">
-            Add new post!
+          <Link to="/posts/new" className="route btn btn-router">
+            add new post
           </Link>
-        </div> 
-        <h1>Reabadle</h1>
-        <div>
+        </div>
+        <div className="header"> 
+          <h1>Readable</h1>
+        </div>
+        <div className="aside">
           <Categories />
         </div>
-        <div>
+        <div className="main">
           <h3>Posts</h3>
           <span>Sort by <button>Date</button><button>Score</button></span>
           <ul>{ this.renderPostList() }</ul>

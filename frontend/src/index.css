@@ -5,5 +5,90 @@
 body {
   width: 95%;
   margin: 0 auto;
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
+}
+
+/*--- Grid Layout ---*/
+
+.main-container {
+  height: 100vh; 
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 100px 100px minmax(300px, 1fr);
+  grid-gap: 10px;
+  grid-template-areas: 
+  "header main"  
+  "route main" 
+  "aside main";
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+  border-left: 1px solid lightskyblue;
+}
+
+.route {
+  grid-area: route;
+}
+
+.aside {
+  grid-area: aside;
+}
+
+
+/*--- Button Module ---*/
+
+.btn { 
+  padding: .3em .3em; 
+  text-decoration: none; 
+  border: 1px gray solid; 
+  display: inline-block;
+  margin: 10px;
+} 
+
+.btn—content {
+  background: blue;
+  color: white;
+  font-size: 6px;
+}
+
+.btn-router {
+  display: block;
+  margin: auto;
+  background-color: lightskyblue;
+  color: white;
+  font-size: 18px;
+  text-align: center; 
+}
+
+/*--- Category List ---*/
+
+.category-parent {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+.category-item {
+  font-size: 16px;
+  font-weight: 800;
+  border-bottom: 1px solid #ccc;
+}
+
+.category-link {
+  text-decoration: none;
+  color: blue;
+  display: block;
+  width: 200px;
+}
+
+/* Headings */
+
+h1, h3 {
+  text-align: center;
+  color: darkblue;
 }

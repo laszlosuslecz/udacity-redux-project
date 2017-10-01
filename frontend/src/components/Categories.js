@@ -20,8 +20,8 @@ class Categories extends Component {
     if (categories) {
       return _.map(categories, category => {
         return (
-          <li key={category.name}>
-            <Link to={`/${category.path}`}>{category.name}</Link>
+          <li key={category.name} className="category-item">
+            <Link to={`/${category.path}`} className="category-link">{category.name}</Link>
           </li>
         )
       })
@@ -32,7 +32,7 @@ class Categories extends Component {
     return (
       <div>
         <h3>Categories:</h3>
-        <ul>{ this.renderCategories() }</ul>
+        <ul className="category-parent">{ this.renderCategories() }</ul>
       </div>
     )
   }
