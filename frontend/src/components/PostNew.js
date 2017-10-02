@@ -86,7 +86,7 @@ class PostNew extends Component {
             name="title" component={ this.renderInput } label='title' type='text' placeholder='title'
           />
           <Field
-            name="category" component='select' label='category' className='select'>
+            name="category" component='select' label='category' className='input select'>
             <option>please choose a category</option>
              { _.map(categories, category => {
               return (
@@ -127,12 +127,17 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  return { categories: state.categories }
+  return { 
+    categories: state.categories 
+  }
 }
 
 export default reduxForm({
   validate,
   form: 'new-post'
 })(
-  connect(mapStateToProps, { createNewPost, fetchCategories })(PostNew)
+  connect(mapStateToProps, { 
+    createNewPost, 
+    fetchCategories 
+  })(PostNew)
 )

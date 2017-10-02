@@ -84,14 +84,7 @@ body {
 }
 
 .select {
-  display: block;
-  margin: 10px auto;
   width: 40%;
-  height: 3rem;
-  border: 2px solid lightskyblue;
-  border-radius: 5px;
-  text-align: center;
-  background-color: white; 
 }
 
 .text-danger {
