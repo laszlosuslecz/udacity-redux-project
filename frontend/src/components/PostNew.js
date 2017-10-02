@@ -1,17 +1,28 @@
+import _ from 'lodash'
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { createNewPost } from '../actions'
+
+import { 
+  createNewPost,
+  fetchCategories
+} from '../actions'
 
 class PostNew extends Component {
+
+  componentDidMount() {
+    this.props.fetchCategories()
+  }
 
   renderInput(field) {
     return (
       <div>
-        <label>{ field.label }</label>
-        <input { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <input { ...field.input } placeholder={ field.placeholder } type='text' className='input' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -19,9 +30,10 @@ class PostNew extends Component {
   renderSelect(field) {
     return (
       <div>
-        <label>{ field.label }</label>
         <select { ...field.input } value={ field.value } />
-        {field.meta.touched ? field.meta.error : ''}
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -29,9 +41,10 @@ class PostNew extends Component {
   renderTextarea(field) {
     return (
       <div>
-        <label>{ field.label }</label>
-        <textarea { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <textarea { ...field.input } placeholder={ field.placeholder } type='text' className='input input-post' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -39,41 +52,56 @@ class PostNew extends Component {
   onSubmit(values) {  
     this.props.createNewPost(values, () => {
       this.props.history.push('/')  
-    })
-    console.log(values)  
+    }) 
   }
 
   render() {
 
-    const { handleSubmit } = this.props
+    const { handleSubmit, categories } = this.props
+    
+    const submitButtonStyle = {
+      padding: '.8em .8em', 
+      backgroundColor: 'lightskyblue',
+      color: 'white',
+      border: '1px lightgray solid',
+      borderRadius: '5px', 
+      display: 'block',
+      margin: 'auto'
+    }
 
     return ( 
-      <div>
+      <div  className="main-container">
+        <div className="header"> 
+          <h1>Readable</h1>
+        </div>
         <div>
-          <Link to="/">
-            Back to main page!
+          <Link to="/" className="route btn btn-router">
+            back to main page
           </Link>
-        </div> 
+        </div>
+        <div className='main'> 
         <h1>create a new post</h1>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="title" component={ this.renderInput } label='title' type='text' placeholder='title'
           />
           <Field
-            name="category" component='select' label='category'>
-            <option />
-            <option value='react'>React</option>
-            <option value='redux'>Redux</option>
-            <option value='udacity'>Udacity</option>
+            name="category" component='select' label='category' className='select'>
+            <option>please choose a category</option>
+             { _.map(categories, category => {
+              return (
+                <option key={category.name} value={category.name}>{category.name}</option>
+              )})}
           </Field>
           <Field
-            name="body" component={ this.renderTextarea } label='content' placeholder='content'
+            name="body" component={ this.renderTextarea } label='post' placeholder='post'
           />
           <Field
             name="author" component={ this.renderInput } label='author' placeholder='name'
           />
-          <button type="submit">Submit</button>
+          <button type="submit" style={submitButtonStyle}>submit</button>
         </form>
+        </div>
       </div>  
     )
   }
@@ -98,9 +126,13 @@ function validate(values) {
   return errors
 }
 
+function mapStateToProps(state) {
+  return { categories: state.categories }
+}
+
 export default reduxForm({
   validate,
   form: 'new-post'
 })(
-  connect(null, { createNewPost })(PostNew)
+  connect(mapStateToProps, { createNewPost, fetchCategories })(PostNew)
 )
