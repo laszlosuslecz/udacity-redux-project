@@ -7,7 +7,7 @@ import {
   editComment,
   fetchGivenComment,
   deleteComment 
-} from '../actions'
+} from '../actions/action_comments'
 
 class CommentEdit extends Component {
 

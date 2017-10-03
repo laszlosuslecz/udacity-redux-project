@@ -4,15 +4,18 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { 
-  fetchGivenPost,
-  fetchComments,
+  fetchGivenPost, 
   votePost,
-  voteComment,
   deletePost
-} from '../actions'
+} from '../actions/action_posts'
+
+import {
+  fetchComments,
+  voteComment
+} from '../actions/action_comments'
+
 
 class PostDetail extends Component {
-
 
   componentDidMount() {  
       const { id } = this.props.match.params

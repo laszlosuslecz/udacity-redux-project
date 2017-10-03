@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { 
   fetchCategoryPosts,
   votePost 
-} from '../actions'
+} from '../actions/action_posts'
 
 class CategoryView extends Component {
 

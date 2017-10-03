@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { 
   editPost,
   fetchGivenPost 
-} from '../actions'
+} from '../actions/action_posts'
 
 class PostEdit extends Component {
 

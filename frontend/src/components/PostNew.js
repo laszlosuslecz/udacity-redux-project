@@ -6,9 +6,12 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
 import { 
-  createNewPost,
+  createNewPost  
+} from '../actions/action_posts'
+
+import { 
   fetchCategories
-} from '../actions'
+} from '../actions/action_categories'
 
 class PostNew extends Component {
 

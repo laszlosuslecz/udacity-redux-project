@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { 
   fetchPosts,
   votePost
- } from '../actions'
+ } from '../actions/action_posts'
 
 
 import Categories from './Categories'

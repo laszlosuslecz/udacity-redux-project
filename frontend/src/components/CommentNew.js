@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { createNewComment } from '../actions'
+
+import { createNewComment } from '../actions/action_comments'
 
 class CommentNew extends Component {
 
