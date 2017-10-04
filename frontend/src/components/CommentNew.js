@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
+import Header from './Header'
+
 import { createNewComment } from '../actions/action_comments'
 
 class CommentNew extends Component {
@@ -11,8 +13,10 @@ class CommentNew extends Component {
     return (
       <div>
         <label>{ field.label }</label>
-        <input { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <input { ...field.input } placeholder={ field.placeholder } type='text' className='input' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -21,8 +25,10 @@ class CommentNew extends Component {
     return (
       <div>
         <label>{ field.label }</label>
-        <textarea { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <textarea { ...field.input } placeholder={ field.placeholder } type='text' className='input input-post' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -37,24 +43,38 @@ class CommentNew extends Component {
   render() {
 
     const { handleSubmit } = this.props
+
+    const submitButtonStyle = {
+      padding: '.8em .8em', 
+      backgroundColor: 'lightskyblue',
+      color: 'white',
+      border: '1px lightgray solid',
+      borderRadius: '5px', 
+      display: 'block',
+      margin: 'auto',
+      marginTop: '10px'
+    }
     
     return ( 
-      <div>
+      <div className="main-container">
+        <Header />
         <div>
-          <Link to="/">
-            Back to main page!
+          <Link to="/" className="route btn btn-router">
+            back to main page
           </Link>
         </div> 
+        <div className="main">
         <h1>create a new comment</h1>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
-            name="body" component={ this.renderTextarea } label='comment' placeholder='comment'
+            name="body" component={ this.renderTextarea } placeholder='comment'
           />
           <Field
-            name="author" component={ this.renderInput } label='author' placeholder='name'
+            name="author" component={ this.renderInput } placeholder='name'
           />
-          <button type="submit">Submit</button>
+          <button type="submit" style={submitButtonStyle}>Submit</button>
         </form>
+        </div>
       </div>  
     )
   }

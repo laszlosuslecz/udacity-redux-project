@@ -89,7 +89,7 @@ class CommentEdit extends Component {
         <Header />
         <div>
           <Link to="/" className="route btn btn-router">
-            Back to main page without updating
+            back to main page without updating
           </Link>
         </div> 
         <div className="main">
