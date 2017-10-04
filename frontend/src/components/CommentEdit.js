@@ -39,8 +39,10 @@ class CommentEdit extends Component {
     return (
       <div>
         <label>{ field.label }</label>
-        <input { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <input { ...field.input } placeholder={ field.placeholder } type='text' className='input' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -49,8 +51,10 @@ class CommentEdit extends Component {
     return (
       <div>
         <label>{ field.label }</label>
-        <textarea { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <textarea { ...field.input } placeholder={ field.placeholder } type='text' className='input input-post' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -67,29 +71,43 @@ class CommentEdit extends Component {
 
     const { handleSubmit } = this.props
 
+    const submitButtonStyle = {
+      padding: '.8em .8em', 
+      backgroundColor: 'lightskyblue',
+      color: 'white',
+      border: '1px lightgray solid',
+      borderRadius: '5px', 
+      display: 'block',
+      margin: 'auto',
+      marginTop: '10px'
+    }
+
     return ( 
-      <div>
+      <div className="main-container">
+        <div className="header"> 
+          <h1>Readable</h1>
+        </div>
         <div>
-          <Link to="/">
-            Back to main page!
+          <Link to="/" className="route btn btn-router">
+            Back to main page without updating
           </Link>
         </div> 
-        <h1>Edit comment</h1>
+        <div className="main">
+        <h1>edit comment</h1>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
-            name="body" component={ this.renderTextarea } label='comment' placeholder='comment'
+            name="body" component={ this.renderTextarea } placeholder='comment'
           />
           <Field
-            name="author" component={ this.renderInput } label='author' placeholder='name'
+            name="author" component={ this.renderInput } placeholder='name'
           />
-          <button type="submit">Update</button>
+          <button type="submit" style={submitButtonStyle}>Update</button>
         </form>
         <button
+          style={submitButtonStyle}
           onClick={ this.onDeleteClick.bind(this) }
         >Delete</button>
-        <Link to="/">
-            Back to main page without updating comment!
-        </Link>
+        </div>
       </div>  
     )
   }
