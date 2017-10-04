@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import Header from './Header'
+
 import { 
   fetchCategoryPosts,
   votePost 
@@ -21,27 +23,41 @@ class CategoryView extends Component {
 
     return _.map(posts, post => {
       return (
-        <li key={post.id}>
-          <Link to={`/${post.category}/${post.id}`}><h3>{post.title}</h3></Link>
-          <div>{`Posted by: ${post.author}`}</div>
-          <div>{`Score: ${post.voteScore}`}</div>
-          <button
-            onClick={() => votePost(post.id, 'upVote')}
-          >Upvote</button>
-          <button
-            onClick={() => votePost(post.id, 'downVote')}
-          >Downvote</button>
+        <li key={post.id} className="post-card">
+          <Link className="post-title" to={`/${post.category}/${post.id}`}><h3>{post.title}</h3></Link>
+          <div>
+            <div className="post-data-item">{`posted by: ${post.author}`}</div>
+            <div className="post-data-item">{`score: ${post.voteScore}`}</div>
+          </div>
+          <div className="btn-vote">
+            <button
+              className="btn-updown"
+              onClick={() => votePost(post.id, 'upVote')}
+              >upvote</button>
+            <button
+              className="btn-updown"
+              onClick={() => votePost(post.id, 'downVote')}
+              >downvote</button>
+          </div>
         </li>
       )
     })
   }
 
   render() {
+
+    const { category } = this.props.match.params
+
     return ( 
-      <div>
-        <Link to='/'>Back to the main page</Link>
-        <h2>Posts in your selected category</h2>
-        <ul>{ this.renderCategoryPostList() }</ul>
+      <div className="main-container">
+        <Header />
+        <div>
+          <Link to='/' className="route btn btn-router">Back to the main page</Link>
+        </div>
+        <div className="main">
+          <h2>{`posts in category: ${category}`}</h2>
+          <ul>{ this.renderCategoryPostList() }</ul>
+        </div>
       </div>
     )
   }
