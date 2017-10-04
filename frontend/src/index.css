@@ -39,6 +39,41 @@ body {
   grid-area: aside;
 }
 
+/*--- Post Grid ---*/
+
+.post-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 20px;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid lightskyblue;
+}
+
+/*--- Posts ---*/
+
+.post-title {
+  text-decoration: none;
+  margin: 10px;
+}
+
+.post-title :hover {
+  background-color: lightgray;
+}
+
+.post-data {
+  display: flex;
+  align-items: center;
+}
+
+.post-data-item {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+}
 
 /*--- Button Module ---*/
 
@@ -65,6 +100,24 @@ body {
   font-size: 18px;
   text-align: center; 
 }
+
+.btn-vote {
+  display: flex;
+}
+
+.btn-updown {
+  flex: 1;
+  padding: .1em .1em; 
+  text-decoration: none; 
+  border: 1px lightgray solid; 
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.btn-updown:hover {
+  background-color: lightskyblue;
+}
+
 
 /*--- Input Module ---*/
 

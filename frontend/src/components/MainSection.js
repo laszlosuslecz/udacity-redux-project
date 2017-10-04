@@ -29,19 +29,23 @@ class MainSection extends Component {
     
     return _.map(posts, post => {
       return (
-        <li key={post.id}>
-          <Link to={`/${post.category}/${post.id}`}><h3>{post.title}</h3></Link>
-          <div>{`Posted by: ${post.author}`}</div>
-          <div>{`Score: ${post.voteScore}`}</div>
-          <div>Number of comments: </div>
-          <button
-            className="btn btn-content"
-            onClick={() => votePost(post.id, 'upVote')}
-          >Upvote</button>
-          <button
-            className="btn btn-content"
-            onClick={() => votePost(post.id, 'downVote')}
-          >Downvote</button>
+        <li key={post.id} className="post-card">
+          <Link className="post-title" to={`/${post.category}/${post.id}`}><h3>{post.title}</h3></Link>
+          <div>
+            <div className="post-data-item">{`posted by: ${post.author}`}</div>
+            <div className="post-data-item">{`score: ${post.voteScore}`}</div>
+            <div className="post-data-item">number of comments: </div>
+          </div>
+          <div className="btn-vote">
+            <button
+              className="btn-updown"
+              onClick={() => votePost(post.id, 'upVote')}
+              >upvote</button>
+            <button
+              className="btn-updown"
+              onClick={() => votePost(post.id, 'downVote')}
+              >downvote</button>
+          </div>
         </li>
       )
     })
@@ -63,7 +67,9 @@ class MainSection extends Component {
         <div className="main">
           <h3>Posts</h3>
           <span>Sort by <button>Date</button><button>Score</button></span>
-          <ul>{ this.renderPostList() }</ul>
+          <div className="post-container">
+            <ul>{ this.renderPostList() }</ul>
+          </div>
         </div>
       </div>
     )
@@ -71,8 +77,7 @@ class MainSection extends Component {
 }
 
 function mapStateToProps(state) {
-  return { 
-  //  posts: state.posts,
+  return {
     posts: _(state.posts)
       .sortBy('voteScore')
       .value()

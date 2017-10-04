@@ -33,7 +33,7 @@ class Categories extends Component {
   render() {
     return (
       <div>
-        <h3>Categories:</h3>
+        <h3>categories</h3>
         <ul className="category-parent">{ this.renderCategories() }</ul>
       </div>
     )
