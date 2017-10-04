@@ -3,6 +3,8 @@ import { Field, reduxForm, initialize } from 'redux-form'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import Header from './Header'
+
 import { 
   editComment,
   fetchGivenComment,
@@ -84,9 +86,7 @@ class CommentEdit extends Component {
 
     return ( 
       <div className="main-container">
-        <div className="header"> 
-          <h1>Readable</h1>
-        </div>
+        <Header />
         <div>
           <Link to="/" className="route btn btn-router">
             Back to main page without updating

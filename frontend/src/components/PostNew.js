@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
+import Header from './Header'
+
 import { 
   createNewPost  
 } from '../actions/action_posts'
@@ -74,9 +76,7 @@ class PostNew extends Component {
 
     return ( 
       <div  className="main-container">
-        <div className="header"> 
-          <h1>Readable</h1>
-        </div>
+        <Header />
         <div>
           <Link to="/" className="route btn btn-router">
             back to main page
