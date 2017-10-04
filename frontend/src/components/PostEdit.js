@@ -3,6 +3,8 @@ import { Field, reduxForm, initialize } from 'redux-form'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import Header from './Header'
+
 import { 
   editPost,
   fetchGivenPost 
@@ -33,8 +35,10 @@ class PostEdit extends Component {
     return (
       <div>
         <label>{ field.label }</label>
-        <input { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <input { ...field.input } placeholder={ field.placeholder } type='text' className='input' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -43,8 +47,10 @@ class PostEdit extends Component {
     return (
       <div>
         <label>{ field.label }</label>
-        <textarea { ...field.input } placeholder={ field.placeholder } type='text' />
-        {field.meta.touched ? field.meta.error : ''}
+        <textarea { ...field.input } placeholder={ field.placeholder } type='text' className='input input-post' />
+        <div className='text-danger'>
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
@@ -61,14 +67,26 @@ class PostEdit extends Component {
 
     const { handleSubmit } = this.props
 
+    const submitButtonStyle = {
+      padding: '.8em .8em', 
+      backgroundColor: 'lightskyblue',
+      color: 'white',
+      border: '1px lightgray solid',
+      borderRadius: '5px', 
+      display: 'block',
+      margin: 'auto'
+    }
+
     return ( 
-      <div>
+      <div className="main-container">
+        <Header />
         <div>
-          <Link to="/">
-            Back to main page!
+          <Link to="/" className="route btn btn-router">
+            back to main page without updating
           </Link>
-        </div> 
-        <h1>Edit post</h1>
+        </div>
+        <div className="main"> 
+        <h1>edit post</h1>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="title" component={ this.renderInput } label='title' type='text' placeholder='title'
@@ -79,11 +97,9 @@ class PostEdit extends Component {
           <Field
             name="author" component={ this.renderInput } label='author' placeholder='name'
           />
-          <button type="submit">Update</button>
+          <button type="submit" style={submitButtonStyle}>Update</button>
         </form>
-        <Link to="/">
-            Back to main page without updating post!
-          </Link>
+        </div>
       </div>  
     )
   }
