@@ -122,6 +122,7 @@ body {
   border-radius: 5px;
   margin: 10px;
   text-align: center;
+  color: grey;
 }
 
 .btn-updown:hover {
@@ -192,5 +193,5 @@ body {
 
 h1, h2, h3 {
   text-align: center;
-  color: darkblue;
+  color: darkblue;  
 }

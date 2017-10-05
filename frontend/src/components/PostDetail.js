@@ -110,7 +110,7 @@ class PostDetail extends Component {
 
     return ( 
       <div className="main-container">
-        <Header />
+        <Header pageHeader='selected post'/>
         <div>
           <Link to='/' className="route btn btn-router">back to the main page</Link>
           <Link 
@@ -120,7 +120,6 @@ class PostDetail extends Component {
         </div>
         
         <div className="main">
-          <h3>selected post</h3>
           <div className="post-container">{ this.renderPostDetails() }</div>
           <h3>comments</h3>
           <ul>{ this.renderCommentList() }</ul>

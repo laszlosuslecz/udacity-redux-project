@@ -55,7 +55,7 @@ class MainSection extends Component {
     console.log(this.props.posts)
     return (
       <div className="main-container">
-        <Header />
+        <Header pageHeader='posts'/>
         <div>
           <Link to="/posts/new" className="route btn btn-router">
             add new post
@@ -65,8 +65,7 @@ class MainSection extends Component {
           <Categories />
         </div>
         <div className="main">
-          <h3>Posts</h3>
-          <span>Sort by <button>Date</button><button>Score</button></span>
+          <span>Sort by <button>Date</button><button>Score</button></span> 
           <div className="post-container">
             <ul>{ this.renderPostList() }</ul>
           </div>

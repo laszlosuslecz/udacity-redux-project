@@ -50,12 +50,11 @@ class CategoryView extends Component {
 
     return ( 
       <div className="main-container">
-        <Header />
+        <Header pageHeader={`posts in category: ${category}`}/>
         <div>
           <Link to='/' className="route btn btn-router">Back to the main page</Link>
         </div>
         <div className="main">
-          <h2>{`posts in category: ${category}`}</h2>
           <ul>{ this.renderCategoryPostList() }</ul>
         </div>
       </div>
