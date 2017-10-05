@@ -86,7 +86,7 @@ class PostEdit extends Component {
           </Link>
         </div>
         <div className="main"> 
-        <h1>edit post</h1>
+        <h2>edit post</h2>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="title" component={ this.renderInput } label='title' type='text' placeholder='title'

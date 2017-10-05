@@ -93,7 +93,7 @@ class CommentEdit extends Component {
           </Link>
         </div> 
         <div className="main">
-        <h1>edit comment</h1>
+        <h2>edit comment</h2>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="body" component={ this.renderTextarea } placeholder='comment'

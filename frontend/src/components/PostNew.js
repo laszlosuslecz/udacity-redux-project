@@ -83,7 +83,7 @@ class PostNew extends Component {
           </Link>
         </div>
         <div className='main'> 
-        <h1>create a new post</h1>
+        <h2>create a new post</h2>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
             name="title" component={ this.renderInput } label='title' type='text' placeholder='title'
