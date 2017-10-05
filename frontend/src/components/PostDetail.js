@@ -1,7 +1,10 @@
 import _ from 'lodash'
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import Header from './Header'
 
 import { 
   fetchGivenPost, 
@@ -34,22 +37,32 @@ class PostDetail extends Component {
     const { post, votePost, comments } = this.props
     
     return (
-         <div>
-           <h3>{post.title}</h3>          
-           <button
-            onClick={() => votePost(post.id, 'upVote')}
-           >Upvote</button>
-           <button
-            onClick={() => votePost(post.id, 'downVote')}
-           >Downvote</button>           
-           <Link to={`/posts/edit/${post.id}`}><button>Edit</button></Link>         
-           <button
-            onClick={ this.onDeleteClick.bind(this) }
-           >Delete</button>
-           <div>{`Posted by: ${post.author}`}</div>
-           <div>{`Score: ${post.voteScore}`}</div>
-           <span>{`Number of comments: ${comments.length}`}</span>
-           <div>{post.body}</div>
+         <div className="post-card">
+           <h3 className="post-title">{post.title}</h3>          
+           <div className="post-body">{post.body}</div>
+           <div>
+            <div className="post-data-item">{`Posted by: ${post.author}`}</div>
+            <div className="post-data-item">{`Score: ${post.voteScore}`}</div>
+            <div className="post-data-item">{`Number of comments: ${comments.length}`}</div>
+           </div>          
+           <div className="btn-vote">
+            <button
+              className="btn-updown"
+              onClick={() => votePost(post.id, 'upVote')}
+              >upvote</button>
+            <button
+              className="btn-updown"
+              onClick={() => votePost(post.id, 'downVote')}
+              >downvote</button>           
+            <Link 
+              to={`/posts/edit/${post.id}`} 
+              className="btn-updown"
+              >edit</Link>         
+            <button
+              className="btn-updown"
+              onClick={ this.onDeleteClick.bind(this) }
+              >delete</button>
+           </div>
          </div>
     )
   }
@@ -62,17 +75,26 @@ class PostDetail extends Component {
     
     return _.map(comments, (comment, id) => {
       return (
-        <li key={comment.id}>
-          <div>{comment.body}</div>
-          <div>{comment.author}</div>
-          <div>{`Score: ${comment.voteScore}`}</div>
-          <button
-            onClick={() => voteComment(comment.id, 'upVote')}
-          >Upvote</button>
-          <button
-            onClick={() => voteComment(comment.id, 'downVote')}
-          >Downvote</button>
-          <Link to={`/comment/edit/${comment.id}/${post.category}`}><button>Edit / Delete</button></Link> 
+        <li key={comment.id} className="post-card">
+          <div className="post-body">{comment.body}</div>
+          <div>
+            <div className="post-data-item">{comment.author}</div>
+            <div className="post-data-item">{`Score: ${comment.voteScore}`}</div>
+          </div>
+          <div className="btn-vote">
+            <button
+              className="btn-updown"
+              onClick={() => voteComment(comment.id, 'upVote')}
+              >upvote</button>
+            <button
+              className="btn-updown"
+              onClick={() => voteComment(comment.id, 'downVote')}
+              >downvote</button>
+            <Link 
+              to={`/comment/edit/${comment.id}/${post.category}`}
+              className="btn-updown"
+              >edit or delete</Link> 
+          </div>
         </li>
       )
     })
@@ -87,13 +109,22 @@ class PostDetail extends Component {
     }
 
     return ( 
-      <div>
-        <Link to='/'>Back to the main page</Link>
-        <div>{ this.renderPostDetails() }</div>
+      <div className="main-container">
+        <Header />
         <div>
-          <h4>Comments</h4>
+          <Link to='/' className="route btn btn-router">back to the main page</Link>
+          <Link 
+            to={`/commentto/${post.id}/${post.category}`}
+            className="route btn btn-router">
+            add comment</Link>
+        </div>
+        
+        <div className="main">
+          <h3>selected post</h3>
+          <div className="post-container">{ this.renderPostDetails() }</div>
+          <h3>comments</h3>
           <ul>{ this.renderCommentList() }</ul>
-          <Link to={`/commentto/${post.id}/${post.category}`}><button>Add comment</button></Link>
+          
         </div>
       </div>
     )

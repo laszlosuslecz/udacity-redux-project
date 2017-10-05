@@ -53,7 +53,7 @@ body {
   border-bottom: 1px solid lightskyblue;
 }
 
-/*--- Posts ---*/
+/*--- Posts and Comments ---*/
 
 .post-title {
   text-decoration: none;
@@ -62,6 +62,14 @@ body {
 
 .post-title :hover {
   background-color: lightgray;
+}
+
+.post-body {
+  text-decoration: none;
+  margin: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
 }
 
 .post-data {
@@ -95,6 +103,7 @@ body {
 .btn-router {
   display: block;
   margin: auto;
+  margin-top: 10px;
   background-color: lightskyblue;
   color: white;
   font-size: 18px;
@@ -112,6 +121,7 @@ body {
   border: 1px lightgray solid; 
   border-radius: 5px;
   margin: 10px;
+  text-align: center;
 }
 
 .btn-updown:hover {
