@@ -89,13 +89,13 @@ class PostEdit extends Component {
         <h2>edit post</h2>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <Field
-            name="title" component={ this.renderInput } label='title' type='text' placeholder='title'
+            name="title" component={ this.renderInput } type='text' placeholder='title'
           />
           <Field
-            name="body" component={ this.renderTextarea } label='content' placeholder='content'
+            name="body" component={ this.renderTextarea } placeholder='content'
           />
           <Field
-            name="author" component={ this.renderInput } label='author' placeholder='name'
+            name="author" component={ this.renderInput } placeholder='name'
           />
           <button type="submit" style={submitButtonStyle}>Update</button>
         </form>
