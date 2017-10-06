@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Header = (props) => (
     <div className="header"> 
@@ -6,5 +7,9 @@ const Header = (props) => (
       <h3>{props.pageHeader}</h3>
     </div>
 )
+
+Header.propTypes = {
+  pageHeader: PropTypes.string
+}
 
 export default Header

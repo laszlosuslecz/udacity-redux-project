@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Header from './Header'
 
@@ -128,6 +129,16 @@ class PostDetail extends Component {
       </div>
     )
   }
+}
+
+PostDetail.propTypes = {
+  fetchGivenPost: PropTypes.func.isRequired,
+  fetchComments: PropTypes.func.isRequired,
+  votePost: PropTypes.func.isRequired,
+  voteComment: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+  comments: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state, ownProps) {

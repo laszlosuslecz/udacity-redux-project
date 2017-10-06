@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Header from './Header'
 
@@ -10,6 +11,7 @@ import {
   fetchCategoryPosts,
   votePost 
 } from '../actions/action_posts'
+
 
 class CategoryView extends Component {
 
@@ -60,6 +62,11 @@ class CategoryView extends Component {
       </div>
     )
   }
+}
+
+CategoryView.propTypes = {
+  fetchCategoryPosts: PropTypes.func.isRequired,
+  votePost: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

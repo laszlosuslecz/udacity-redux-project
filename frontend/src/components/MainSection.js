@@ -3,16 +3,16 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Header from './Header'
+import Categories from './Categories'
 
 import { 
   fetchPosts,
   votePost
  } from '../actions/action_posts'
 
-
-import Categories from './Categories'
 
 class MainSection extends Component {
 
@@ -73,6 +73,11 @@ class MainSection extends Component {
       </div>
     )
   }
+}
+
+MainSection.propTypes = {
+  fetchPosts: PropTypes.func.isRequired,
+  votePost: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

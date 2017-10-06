@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { fetchCategories } from '../actions/action_categories'
 
@@ -38,6 +39,10 @@ class Categories extends Component {
       </div>
     )
   }
+}
+
+Categories.propTypes = {
+  fetchCategories: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
