@@ -62,10 +62,14 @@ class MainSection extends Component {
           </Link>
         </div>
         <div className="aside">
+          <div className="sort-container">
+            <h3>posts sort by</h3>
+            <button className="btn btn-content">date</button>
+            <button className="btn btn-content">score</button>
+          </div>
           <Categories />
         </div>
-        <div className="main">
-          <span>Sort by <button>Date</button><button>Score</button></span> 
+        <div className="main"> 
           <div className="post-container">
             <ul>{ this.renderPostList() }</ul>
           </div>

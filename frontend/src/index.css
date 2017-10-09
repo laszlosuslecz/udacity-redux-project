@@ -189,6 +189,11 @@ body {
   background-color: lightgray;
 }
 
+/*---Sort by--*/
+.sort-container {
+  text-align: center;
+}
+
 /* Headings */
 
 h1, h2, h3 {
