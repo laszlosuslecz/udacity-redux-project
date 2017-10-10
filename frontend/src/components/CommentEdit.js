@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Field, reduxForm, initialize } from 'redux-form'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import Header from './Header'
+import Navigation from './Navigation'
 
 import { 
   editComment,
@@ -87,11 +87,10 @@ class CommentEdit extends Component {
     return ( 
       <div className="main-container">
         <Header />
-        <div>
-          <Link to="/" className="route btn btn-router">
-            back to main page without updating
-          </Link>
-        </div> 
+        <Navigation 
+          route='/' 
+          linkText='back to main page without updating'
+        />
         <div className="main">
         <h2>edit comment</h2>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>

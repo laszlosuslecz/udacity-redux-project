@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import Header from './Header'
+import Navigation from './Navigation'
 
 import { 
   fetchCategoryPosts,
@@ -53,9 +54,10 @@ class CategoryView extends Component {
     return ( 
       <div className="main-container">
         <Header pageHeader={`posts in category: ${category}`}/>
-        <div>
-          <Link to='/' className="route btn btn-router">Back to the main page</Link>
-        </div>
+        <Navigation 
+          route='/' 
+          linkText='back to main page'
+        />
         <div className="main">
           <ul>{ this.renderCategoryPostList() }</ul>
         </div>

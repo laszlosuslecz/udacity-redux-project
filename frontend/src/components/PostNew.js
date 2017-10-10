@@ -1,11 +1,11 @@
 import _ from 'lodash'
 
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
 import Header from './Header'
+import Navigation from './Navigation'
 
 import { 
   createNewPost  
@@ -77,11 +77,10 @@ class PostNew extends Component {
     return ( 
       <div  className="main-container">
         <Header />
-        <div>
-          <Link to="/" className="route btn btn-router">
-            back to main page
-          </Link>
-        </div>
+        <Navigation 
+          route='/' 
+          linkText='back to main page'
+        /> 
         <div className='main'> 
         <h2>create a new post</h2>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>

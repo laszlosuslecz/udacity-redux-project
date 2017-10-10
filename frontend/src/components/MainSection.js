@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import Header from './Header'
+import Navigation from './Navigation'
 import Categories from './Categories'
 
 import { 
@@ -56,11 +57,10 @@ class MainSection extends Component {
     return (
       <div className="main-container">
         <Header pageHeader='posts'/>
-        <div>
-          <Link to="/posts/new" className="route btn btn-router">
-            add new post
-          </Link>
-        </div>
+        <Navigation 
+          route='/posts/new' 
+          linkText='add new post'
+        />       
         <div className="aside">
           <div className="sort-container">
             <h3>posts sort by</h3>
